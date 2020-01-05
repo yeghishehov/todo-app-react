@@ -74,6 +74,14 @@ export default class Todo extends React.Component {
     }));
   };
 
+  onItemDelete = id => {
+    this.setState(state => ({
+      todos: state.todos.filter(todo =>
+        todo.id !== id
+      )
+    }));
+  }
+
   onFilter = filter => {
     this.setState({
       filter
@@ -105,6 +113,9 @@ export default class Todo extends React.Component {
           <ul>
             {normalizedTodos.map(({ name, id, isComplete, isEdit }) => (
               <li key={id} className={isComplete ? "checked" : ""}>
+                <button onClick={e => this.onItemDelete(id)}>
+                  <i className="fa fa-trash"></i> 
+                </button>
                 <input type="checkbox" onClick={() => this.onTodoSelect(id)} defaultChecked = {isComplete ? "checked" : ""}/>
 
                 {isEdit ? (
@@ -114,7 +125,7 @@ export default class Todo extends React.Component {
                     onKeyDown={e => this.onItemKeyPress(id, e)}
                   />
                 ) : (
-                  <span onClick={() => this.onTodoEdit(id)}>{name}</span>
+                    <span onClick={() => this.onTodoEdit(id)}>{name}</span>
                 )}
               </li>
             ))}
