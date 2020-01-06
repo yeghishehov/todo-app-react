@@ -124,22 +124,26 @@ export default class Todo extends React.Component {
     localStorage.setItem('state', JSON.stringify(this.state));
 
     return (
-      <div>
-        <h1>Todo</h1>        
-        <i className="fa fa-check" 
-          onClick={() => this.onAllItemsSelect()}>
-        </i>         
-        <Input onTodoAdd={this.onTodoAdd} />
+      <div className="parent">
+        <h1>Todos</h1>
+        <div className="add-todo">
+          <i className="fa fa-check" 
+            onClick={() => this.onAllItemsSelect()}>
+          </i>         
+          <Input onTodoAdd={this.onTodoAdd} />
+        </div>
         <section>
           <ul>
             {normalizedTodos.map(({ name, id, isComplete, isEdit }) => (
               <li key={id} className={isComplete ? "checked" : ""}>
                 <input type="checkbox" 
+                  className="checkbox"
                   onChange={() => this.onTodoSelect(id)} 
                   checked = {isComplete ? "checked" : ""}
                 />
                 {isEdit ? (
                   <input
+                    className="item-input"
                     value={name}
                     onChange={e => this.onItemInputChange(id, e)}
                     onKeyDown={e => this.onItemKeyPress(id, e)}

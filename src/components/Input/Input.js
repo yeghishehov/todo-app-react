@@ -38,12 +38,14 @@ export default class Input extends React.Component {
     return (
       <div>
         <input
+          autoFocus
+          className="input"
           placeholder={placeholder}
           value={todoValue}
           onChange={this.onInputChange}
           onKeyDown={this.handleKeyDown}
         />
-        <button onClick={this.handleSubmit}>Add</button>
+        <button className="addBtn" onClick={this.handleSubmit}> <i className="fa fa-plus-circle"> </i></button>
         
       </div>
     );
