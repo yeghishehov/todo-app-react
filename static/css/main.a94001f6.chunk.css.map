@@ -1,1 +1,0 @@
-{"version":3,"sources":["todo.css"],"names":[],"mappings":"AAAA,GACI,oBACF,CAEA,SACE,4BACF,CAEA,QACE,qBACF","file":"main.a94001f6.chunk.css","sourcesContent":["ul {\r\n    list-style-type: none;\r\n  }\r\n  \r\n  .checked {\r\n    text-decoration: line-through;\r\n  }\r\n  \r\n  .select {\r\n    background-color: #ccc;\r\n  }\r\n  \r\n  "]}
