@@ -81,6 +81,24 @@ export default class Todo extends React.Component {
       )
     }));
   }
+  
+  onAllItemsSelect = () => {
+    const isEveryComplete = this.state.todos.every(todo => todo.isComplete === true);
+
+    if(isEveryComplete) {
+      this.setState(state => ({
+        todos: state.todos.map(todo => 
+          ({ ...todo, isComplete: false})
+        )
+      }))
+    } else {
+      this.setState(state => ({
+        todos: state.todos.map(todo => 
+          ({ ...todo, isComplete: true})
+        )
+      }))
+    }
+  }
 
   onFilter = filter => {
     this.setState({
@@ -107,17 +125,19 @@ export default class Todo extends React.Component {
 
     return (
       <div>
-        <h1>Todo</h1>
+        <h1>Todo</h1>        
+        <i className="fa fa-check" 
+          onClick={() => this.onAllItemsSelect()}>
+        </i>         
         <Input onTodoAdd={this.onTodoAdd} />
         <section>
           <ul>
             {normalizedTodos.map(({ name, id, isComplete, isEdit }) => (
               <li key={id} className={isComplete ? "checked" : ""}>
-                <button onClick={e => this.onItemDelete(id)}>
-                  <i className="fa fa-trash"></i> 
-                </button>
-                <input type="checkbox" onClick={() => this.onTodoSelect(id)} defaultChecked = {isComplete ? "checked" : ""}/>
-
+                <input type="checkbox" 
+                  onChange={() => this.onTodoSelect(id)} 
+                  checked = {isComplete ? "checked" : ""}
+                />
                 {isEdit ? (
                   <input
                     value={name}
@@ -125,7 +145,10 @@ export default class Todo extends React.Component {
                     onKeyDown={e => this.onItemKeyPress(id, e)}
                   />
                 ) : (
-                    <span onClick={() => this.onTodoEdit(id)}>{name}</span>
+                    <>
+                      <span onClick={() => this.onTodoEdit(id)}>{name}</span>
+                      <i className="fa fa-trash" onClick={() => this.onItemDelete(id)}></i> 
+                    </>
                 )}
               </li>
             ))}

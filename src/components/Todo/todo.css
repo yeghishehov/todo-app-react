@@ -1,13 +1,23 @@
 ul {
     list-style-type: none;
-  }
+
+}
+
+.checked {
+  text-decoration: line-through;
+}
   
-  .checked {
-    text-decoration: line-through;
-  }
-  
-  .select {
-    background-color: #ccc;
-  }
-  
-  
+.select {
+  background-color: #ccc;
+}
+
+.fa-check {
+  position: relative;
+  float: left;
+  margin-right: 5px;
+}
+
+.fa-trash {
+  position: relative;
+  float: right;
+}
